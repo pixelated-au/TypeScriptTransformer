@@ -22,12 +22,6 @@ class PixelatedArrayConstantsTransformer implements Transformer
 
     public function transform(ReflectionClass $class, string $name): TransformedType
     {
-        // Get the name of the TypeScript type
-        $tsName = call_user_func([$class->getName(), 'getTypeScriptName']);
-
-
-        //ray($tsName, $name, $class->getConstants(\ReflectionClassConstant::IS_PUBLIC));
-
         $enums = $this->resolveProperties($class);
         return TransformedType::create($class, $name, "export enum $name {\n$enums\n}");
     }
@@ -39,7 +33,7 @@ class PixelatedArrayConstantsTransformer implements Transformer
         $props = [];
         foreach ($properties as $key => $value) {
             $name = $value['name'];
-            $props[] = "$key = $name";
+            $props[] = "    $key = $name";
         }
 
         return implode(",\n", $props);

@@ -15,5 +15,4 @@ namespace Pixelated\TypeScriptTransformer\Contracts;
  */
 interface Constants
 {
-    public static function getTypeScriptName();
 }
