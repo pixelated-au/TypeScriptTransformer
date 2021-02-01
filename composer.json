@@ -1,0 +1,24 @@
+{
+  "name": "pixelated-au/typescript-transformer",
+  "description": "Addon for the Spatie TypeScript Transformer",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ian Heggaton",
+      "email": "ian@pixelated.com.au"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "spatie/typescript-transformer": "^1.1"
+  },
+  "require-dev": {
+    "spatie/laravel-ray": "^1.10"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pixelated\\TypeScriptTransformer\\": "src"
+    }
+  }
+}
