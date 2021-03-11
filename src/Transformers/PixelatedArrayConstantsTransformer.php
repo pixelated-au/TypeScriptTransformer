@@ -33,7 +33,7 @@ class PixelatedArrayConstantsTransformer implements Transformer
         $props = [];
         foreach ($properties as $key => $value) {
             $name = $value['name'];
-            $props[] = "    $key = $name";
+            $props[] = "    $key = \"$name\"";
         }
 
         return implode(",\n", $props);
