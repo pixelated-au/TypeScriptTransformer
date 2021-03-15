@@ -23,17 +23,20 @@ class PixelatedArrayConstantsTransformer implements Transformer
     public function transform(ReflectionClass $class, string $name): TransformedType
     {
         $enums = $this->resolveProperties($class);
+
         return TransformedType::create($class, $name, "export enum $name {\n$enums\n}");
     }
 
-    private function resolveProperties(ReflectionClass $class)
+    private function resolveProperties(ReflectionClass $class): string
     {
         $properties = $class->getConstants(\ReflectionClassConstant::IS_PUBLIC);
 
         $props = [];
         foreach ($properties as $key => $value) {
-            $name = $value['name'];
-            $props[] = "    $key = \"$name\"";
+            if (is_array($value)) {
+                $name    = $value['name'];
+                $props[] = "    $key = \"$name\"";
+            }
         }
 
         return implode(",\n", $props);
