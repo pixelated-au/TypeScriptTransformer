@@ -7,7 +7,6 @@
 
 namespace Pixelated\TypeScriptTransformer\Transformers;
 
-use JetBrains\PhpStorm\Pure;
 use Pixelated\TypeScriptTransformer\Contracts\Constants;
 use ReflectionClass;
 use Spatie\TypeScriptTransformer\Structures\TransformedType;
@@ -15,7 +14,7 @@ use Spatie\TypeScriptTransformer\Transformers\Transformer;
 
 class PixelatedArrayConstantsTransformer implements Transformer
 {
-    #[Pure] public function canTransform(ReflectionClass $class): bool
+    public function canTransform(ReflectionClass $class): bool
     {
         return in_array(Constants::class, $class->getInterfaceNames());
     }

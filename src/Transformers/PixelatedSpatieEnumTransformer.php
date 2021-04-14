@@ -25,12 +25,20 @@ class PixelatedSpatieEnumTransformer implements Transformer
     private function resolveOptions(ReflectionClass $class): string
     {
         /** @var \Spatie\Enum\Enum $enum */
-        $enum = $class->getName();
+        $enum  = $class->getName();
+        $enums = $enum::toArray();
 
-        $options = array_map(
-            fn($enum) => "'{$enum}'",
-            array_keys($enum::toArray())
-        );
+        $options = '';
+        foreach ($enums as $key => $value) {
+            $options .= "{$value} = \"{$key}\",\n";
+        }
+
+        return "{\n{$options}}";
+
+        //$options = array_map(
+        //    fn($enum, $foo) => "^'{$enum} -- {$foo}'&",
+        //    $enum::toArray()
+        //);
 
         return implode("\n", $options);
     }

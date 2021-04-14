@@ -18,22 +18,10 @@ class PixelatedTypeScriptWriter extends TypeDefinitionWriter
         [$namespaces, $rootTypes] = $this->groupByNamespace($collection);
 
         $output = '';
-        //TODO
-        //TODO
-        //TODO
-        //TODO
-        //$callback = static fn(TransformedType $type) => "export enum {$type->name} = {$type->transformed};";
-        //TODO
-        //TODO
-        //TODO
-        //TODO
-
         foreach ($namespaces as $namespace => $types) {
             asort($types);
             $output .= "namespace {$namespace} {" . PHP_EOL;
-
             $output .= implode(PHP_EOL, array_map([$this, 'getTypeExportString'], $types));
-
             $output .= PHP_EOL . "}" . PHP_EOL;
         }
 
