@@ -1,9 +1,4 @@
 <?php
-/**
- * Project: StreamEdge
- * Owner: Pixelated
- * Copyright: 2021
- */
 
 namespace Pixelated\TypeScriptTransformer\Contracts;
 

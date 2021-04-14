@@ -1,21 +1,16 @@
 <?php
-/**
- * Project: StreamEdge
- * Owner: Pixelated
- * Copyright: 2021
- */
 
 namespace Pixelated\TypeScriptTransformer\Transformers;
 
-use JetBrains\PhpStorm\Pure;
 use Pixelated\TypeScriptTransformer\Contracts\Constants;
 use ReflectionClass;
+use ReflectionClassConstant;
 use Spatie\TypeScriptTransformer\Structures\TransformedType;
 use Spatie\TypeScriptTransformer\Transformers\Transformer;
 
 class PixelatedArrayConstantsTransformer implements Transformer
 {
-    #[Pure] public function canTransform(ReflectionClass $class): bool
+    public function canTransform(ReflectionClass $class): bool
     {
         return in_array(Constants::class, $class->getInterfaceNames());
     }
@@ -29,7 +24,7 @@ class PixelatedArrayConstantsTransformer implements Transformer
 
     private function resolveProperties(ReflectionClass $class): string
     {
-        $properties = $class->getConstants(\ReflectionClassConstant::IS_PUBLIC);
+        $properties = $class->getConstants(ReflectionClassConstant::IS_PUBLIC);
 
         $props = [];
         foreach ($properties as $key => $value) {
