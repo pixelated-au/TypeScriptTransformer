@@ -30,16 +30,9 @@ class PixelatedSpatieEnumTransformer implements Transformer
 
         $options = '';
         foreach ($enums as $key => $value) {
-            $options .= "{$value} = \"{$key}\",\n";
+            $options .= "$value = \"$key\",\n";
         }
 
-        return "{\n{$options}}";
-
-        //$options = array_map(
-        //    fn($enum, $foo) => "^'{$enum} -- {$foo}'&",
-        //    $enum::toArray()
-        //);
-
-        return implode("\n", $options);
+        return "{\n$options}";
     }
 }

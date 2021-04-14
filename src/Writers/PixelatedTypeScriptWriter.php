@@ -20,7 +20,7 @@ class PixelatedTypeScriptWriter extends TypeDefinitionWriter
         $output = '';
         foreach ($namespaces as $namespace => $types) {
             asort($types);
-            $output .= "namespace {$namespace} {" . PHP_EOL;
+            $output .= "namespace $namespace {" . PHP_EOL;
             $output .= implode(PHP_EOL, array_map([$this, 'getTypeExportString'], $types));
             $output .= PHP_EOL . "}" . PHP_EOL;
         }
@@ -34,9 +34,9 @@ class PixelatedTypeScriptWriter extends TypeDefinitionWriter
     {
         if ($type->reflection->isSubclassOf(Enum::class)
             || in_array(Constants::class, $type->reflection->getInterfaceNames(), true)) {
-            return "export enum {$type->name} {$type->transformed}";
+            return "export enum $type->name $type->transformed";
         }
 
-        return "export type {$type->name} = {$type->transformed};";
+        return "export type $type->name = $type->transformed;";
     }
 }
