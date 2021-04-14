@@ -30,7 +30,8 @@ class PixelatedSpatieEnumTransformer implements Transformer
 
         $options = '';
         foreach ($enums as $key => $value) {
-            $options .= "$value = \"$key\",\n";
+            $key = is_numeric($key) ? $key : '"$key"';
+            $options .= "$value = $key,\n";
         }
 
         return "{\n$options}";
