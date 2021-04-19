@@ -10,13 +10,12 @@ use Spatie\TypeScriptTransformer\Transformers\Transformer;
 
 class PixelatedArrayConstantsTransformer implements Transformer
 {
-    public function canTransform(ReflectionClass $class): bool
+    public function transform(ReflectionClass $class, string $name): ?TransformedType
     {
-        return in_array(Constants::class, $class->getInterfaceNames());
-    }
+        if (!in_array(Constants::class, $class->getInterfaceNames())) {
+            return null;
+        }
 
-    public function transform(ReflectionClass $class, string $name): TransformedType
-    {
         $enums = $this->resolveProperties($class);
 
         return TransformedType::create($class, $name, "{\n$enums\n}");
