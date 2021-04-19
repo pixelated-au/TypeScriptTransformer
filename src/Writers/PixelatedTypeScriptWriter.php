@@ -4,28 +4,28 @@ namespace Pixelated\TypeScriptTransformer\Writers;
 
 use Pixelated\TypeScriptTransformer\Contracts\Constants;
 use Spatie\Enum\Enum;
-use Spatie\TypeScriptTransformer\Actions\ReplaceSymbolsInCollectionAction;
 use Spatie\TypeScriptTransformer\Structures\TransformedType;
 use Spatie\TypeScriptTransformer\Structures\TypesCollection;
-use Spatie\TypeScriptTransformer\Writers\TypeDefinitionWriter;
+use Spatie\TypeScriptTransformer\Writers\ModuleWriter;
 
-class PixelatedTypeScriptWriter extends TypeDefinitionWriter
+class PixelatedTypeScriptWriter extends ModuleWriter
 {
     public function format(TypesCollection $collection): string
     {
-        (new ReplaceSymbolsInCollectionAction())->execute($collection);
-
-        [$namespaces, $rootTypes] = $this->groupByNamespace($collection);
-
         $output = '';
-        foreach ($namespaces as $namespace => $types) {
-            asort($types);
-            $output .= "namespace $namespace {" . PHP_EOL;
-            $output .= implode(PHP_EOL, array_map([$this, 'getTypeExportString'], $types));
-            $output .= PHP_EOL . "}" . PHP_EOL;
-        }
 
-        $output .= implode(PHP_EOL, array_map([$this, 'getTypeExportString'], $rootTypes));
+        $iterator = $collection->getIterator();
+
+        $iterator->uasort(function (TransformedType $a, TransformedType $b) {
+            return strcmp($a->name, $b->name);
+        });
+
+        foreach ($iterator as $type) {
+            if ($type->isInline) {
+                continue;
+            }
+            $output .= $this->getTypeExportString($type);
+        }
 
         return $output;
     }
