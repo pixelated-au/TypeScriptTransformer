@@ -12,7 +12,7 @@ class PixelatedTypeScriptWriter extends ModuleWriter
 {
     public function format(TypesCollection $collection): string
     {
-        $output = '';
+        $output = "// @ts-nocheck\n";
 
         $iterator = $collection->getIterator();
 
