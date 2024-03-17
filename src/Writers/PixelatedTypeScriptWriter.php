@@ -12,7 +12,8 @@ class PixelatedTypeScriptWriter extends ModuleWriter
 {
     public function format(TypesCollection $collection): string
     {
-        $output = "// @ts-nocheck\n";
+        $output = "noinspection TypeScriptUnresolvedReference" . PHP_EOL;
+        $output .= "// @ts-nocheck" . PHP_EOL;
 
         $iterator = $collection->getIterator();
 
@@ -34,9 +35,9 @@ class PixelatedTypeScriptWriter extends ModuleWriter
     {
         if ($type->reflection->isSubclassOf(Enum::class)
             || in_array(Constants::class, $type->reflection->getInterfaceNames(), true)) {
-            return "export enum $type->name $type->transformed";
+            return "export enum $type->name $type->transformed" . PHP_EOL;
         }
 
-        return "export type $type->name = $type->transformed;";
+        return "export type $type->name = $type->transformed;" . PHP_EOL;
     }
 }
