@@ -12,7 +12,7 @@ class PixelatedTypeScriptWriter extends ModuleWriter
 {
     public function format(TypesCollection $collection): string
     {
-        $output = "noinspection TypeScriptUnresolvedReference" . PHP_EOL;
+        $output = "// noinspection TypeScriptUnresolvedReference" . PHP_EOL;
         $output .= "// @ts-nocheck" . PHP_EOL;
 
         $iterator = $collection->getIterator();
