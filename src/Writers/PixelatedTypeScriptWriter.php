@@ -33,11 +33,6 @@ class PixelatedTypeScriptWriter extends ModuleWriter
 
     private function getTypeExportString(TransformedType $type): string
     {
-        if ($type->reflection->isSubclassOf(Enum::class)
-            || in_array(Constants::class, $type->reflection->getInterfaceNames(), true)) {
-            return "export enum $type->name $type->transformed" . PHP_EOL;
-        }
-
-        return "export type $type->name = $type->transformed;" . PHP_EOL;
+        return "export $type->keyword $type->name $type->transformed;" . PHP_EOL;
     }
 }
