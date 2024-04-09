@@ -18,7 +18,8 @@ class PixelatedSpatieEnumTransformer implements Transformer
         return TransformedType::create(
             $class,
             $name,
-            $this->resolveOptions($class)
+            $this->resolveOptions($class),
+            keyword: 'enum',
         );
     }
 
