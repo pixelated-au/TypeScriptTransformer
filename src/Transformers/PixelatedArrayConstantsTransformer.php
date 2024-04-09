@@ -18,7 +18,12 @@ class PixelatedArrayConstantsTransformer implements Transformer
 
         $enums = $this->resolveProperties($class);
 
-        return TransformedType::create($class, $name, "{\n$enums\n}");
+        return TransformedType::create(
+            $class,
+            $name,
+            "{\n$enums\n}",
+            keyword: 'enum',
+        );
     }
 
     private function resolveProperties(ReflectionClass $class): string
