@@ -21,7 +21,7 @@ class PixelatedArrayConstantsTransformer implements Transformer
         return TransformedType::create(
             $class,
             $name,
-            "{\n$enums\n}",
+            $enums,
             keyword: 'enum',
         );
     }

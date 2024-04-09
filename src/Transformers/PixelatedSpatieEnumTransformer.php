@@ -35,6 +35,6 @@ class PixelatedSpatieEnumTransformer implements Transformer
             $options .= "$value = $key,\n";
         }
 
-        return "{\n$options}";
+        return $options;
     }
 }
