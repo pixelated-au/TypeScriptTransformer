@@ -14,7 +14,9 @@
     "spatie/typescript-transformer": "^2.3.0"
   },
   "require-dev": {
-    "spatie/laravel-ray": "^1.10"
+    "roave/security-advisories": "dev-latest",
+    "spatie/laravel-ray": "^1.10",
+    "spatie/enum": "^3.13"
   },
   "autoload": {
     "psr-4": {
