@@ -13,7 +13,7 @@ class PixelatedTypeScriptWriter extends ModuleWriter
      */
     public function format(TypesCollection $collection): string
     {
-        $output = "// noinspection TypeScriptUnresolvedReference" . PHP_EOL;
+        $output = "// noinspection TypeScriptUnresolvedReference,JSUnusedGlobalSymbols" . PHP_EOL;
         $output .= "/* eslint-disable */" . PHP_EOL;
         $output .= "// @ts-nocheck: This file is auto generated from Spatie TypeScriptTransformer" . PHP_EOL;
 
