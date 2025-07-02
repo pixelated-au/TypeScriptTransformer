@@ -11,11 +11,11 @@
   ],
   "require": {
     "php": "^8.1",
-    "spatie/typescript-transformer": "^2.3.0"
+    "spatie/typescript-transformer": "^2.5.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "spatie/laravel-ray": "^1.10",
+    "spatie/laravel-ray": "^1.40.2",
     "spatie/enum": "^3.13"
   },
   "autoload": {
